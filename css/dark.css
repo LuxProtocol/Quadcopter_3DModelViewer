@@ -49,3 +49,9 @@ input, select, button {
   background-color: #383838;  
 }
 
+.motor-box {
+  border-color: #666;
+  background-color: #383838;
+  color: #ccc;
+}
+

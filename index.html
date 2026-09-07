@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Adafruit 3D Model Viewer</title>
+    <title>Quadcopter Viewer</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
-      // Redirect to HTTPS if HTTP is requested.
-      if (window.location.protocol === 'http:') {
+      // Redirect to HTTPS if HTTP is requested, but not for local dev
+      // servers (localhost/127.0.0.1/::1), which usually don't have TLS
+      // set up and would otherwise just fail to load.
+      const isLocalHost = ['localhost', '127.0.0.1', '[::1]', '::1'].includes(window.location.hostname);
+      if (window.location.protocol === 'http:' && !isLocalHost) {
         window.location.href = 'https:' + window.location.href.substring(5);
       }
     </script>
     <script type="importmap">
         {
             "imports": {
-                "three": "https://threejs.org/build/three.module.js",
-                "objloader": "https://threejs.org/examples/jsm/loaders/OBJLoader.js"
+                "three": "https://threejs.org/build/three.module.js"
             }
         }
     </script>
@@ -29,7 +31,7 @@
   </head>
   <body>
     <header class="header">
-      <h1>Adafruit 3D Model Viewer</h1>
+      <h1>Lux Protocol's Quadcopter Motor Vector Viewer</h1>
     </header>
     <main class="main">
       <div id="notSupported" class="notSupported">
@@ -55,6 +57,28 @@
       </div>
       <div class="animation-container">
         <canvas id="canvas"></canvas>
+      </div>
+      <div id="motorInfo" class="motor-info-container">
+        <div class="motor-box" id="motorBox0">
+          <div class="motor-label">M1 (Front Right)</div>
+          <div class="motor-pwm">PWM: -- µs</div>
+          <div class="motor-thrust">Thrust: --%</div>
+        </div>
+        <div class="motor-box" id="motorBox1">
+          <div class="motor-label">M2 (Front Left)</div>
+          <div class="motor-pwm">PWM: -- µs</div>
+          <div class="motor-thrust">Thrust: --%</div>
+        </div>
+        <div class="motor-box" id="motorBox2">
+          <div class="motor-label">M3 (Rear Left)</div>
+          <div class="motor-pwm">PWM: -- µs</div>
+          <div class="motor-thrust">Thrust: --%</div>
+        </div>
+        <div class="motor-box" id="motorBox3">
+          <div class="motor-label">M4 (Rear Right)</div>
+          <div class="motor-pwm">PWM: -- µs</div>
+          <div class="motor-thrust">Thrust: --%</div>
+        </div>
       </div>
       <div id="log-container" class="row">
         <div id="log" class="log"></div>
