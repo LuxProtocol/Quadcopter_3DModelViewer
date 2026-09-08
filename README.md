@@ -1,12 +1,26 @@
-# Adafruit WebSerial 3D Model Viewer (Quadcopter Motor Vector Edition)
-Source files for the Adafruit WebSerial 3D Model Viewer available at: https://adafruit.github.io/Adafruit_WebSerial_3DModelViewer/. This is the web end for the Adafruit AHRS calibrated_orientation sketch.
+# Lux Protocol's Quadcopter Visualization Tool
+Origional Source files for the Adafruit WebSerial 3D Model Viewer available at: https://adafruit.github.io/Adafruit_WebSerial_3DModelViewer/. This is the web end for the Adafruit AHRS calibrated_orientation sketch.
 
 This fork replaces the bunny model with a procedurally-built quadcopter and
 adds support for visualizing per-motor thrust/force vectors as arrows on
 each motor, in addition to the original whole-body orientation display.
 
-## Adafruit Learn Guide
-To learn how to use the 3D Model Viewer, check out the learn guide at https://learn.adafruit.com/how-to-fuse-motion-sensor-data-into-ahrs-orientation-euler-quaternions
+
+## Deploying the Visualizer locally
+
+1. First you're going to want to fork and cd into the repo:
+```
+git clone https://github.com/LuxProtocol/Quadcopter_3DModelViewer.git && cd Quadcopter_3DModelViewer
+```
+
+2. Next, you are going to use python to host a local http server hosting the frontend. This is necessary due to the WebSerial functionality of the frontend.
+```
+python3 -m http.server 8000
+```
+
+Now you can visit http://localhost:8000 to use the Quadcopter Visualization Tool
+
+
 
 ## Motor Vectors
 
